@@ -1,0 +1,217 @@
+/* =========================
+   THEME & TOKENS
+   ========================= */
+:root{
+  /* === ปรับตรงนี้เพื่อเปลี่ยนธีมทั้งเว็บเร็ว ๆ === */
+  --brand:        #111827;   /* สีหลัก/ปุ่ม */
+  --brand-ink:    #ffffff;   /* สีตัวอักษรบนปุ่มหลัก */
+  --accent:       #2563eb;   /* ไฮไลต์ ลิงก์ โฟกัส */
+  --bg:           #f7f7f9;   /* สีพื้น */
+  --card:         #ffffff;   /* สีการ์ด/พื้นกล่อง */
+  --line:         #e5e7eb;   /* เส้นแบ่ง */
+  --text:         #111111;   /* ตัวอักษรหลัก */
+  --subtext:      #6b7280;   /* ตัวอักษรรอง */
+  --danger:       #e11d48;   /* ลบ/แจ้งเตือน */
+  --success:      #16a34a;   /* สำเร็จ */
+
+  --radius:       20px;      /* มุมโค้ง */
+  --shadow-1:     0 6px 16px rgba(0,0,0,.06);
+  --shadow-2:     0 10px 30px  rgba(0,0,0,.5);
+  --gap:          16px;
+  --font:         ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Thai", "Noto Sans", "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+/* โหมดมืดอัตโนมัติ (ตาม System) */
+@media (prefers-color-scheme: dark){
+  :root{
+    --brand:      #476cb6;
+    --brand-ink:  #f8fafc;
+    --accent:     #60a5fa;
+    --bg:         #0b1020;
+    --card:       #0b1020;
+    --line:       #2660b2;
+    --text:       #e5e7eb;
+    --subtext:    #94a3b8;
+    --shadow-1:   0 8px 24px rgba(0,0,0,.4);
+    --shadow-2:   0 16px 40px  rgba(0, 0, 0, 0.425);
+  }
+}
+
+/* =========================
+   BASE
+   ========================= */
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+  margin:0; font-family:var(--font);
+  color:var(--text); background:var(--bg);
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+
+img{ max-width:100%; display:block; }
+a{ color:var(--accent); text-decoration:none; }
+a:hover{ text-decoration:underline; }
+
+.container{
+  max-width:1100px; margin:0 auto; padding:20px;
+}
+
+/* =========================
+   HEADER / NAV
+   ========================= */
+.header{
+  background:transparent; margin-bottom:8px;
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+}
+.brand{ display:flex; align-items:center; gap:12px; color:var(--text); font-weight:800; letter-spacing:.2px; }
+.brand img{ height:30px; width:auto; filter: drop-shadow(0 1px 0 rgba(0,0,0,.05)); }
+
+.nav a{
+  margin-left:14px; padding:8px 10px; border-radius:10px; color:var(--text);
+  position:relative; transition: background .2s ease, color .2s ease;
+}
+.nav a:hover{ background:var(--card); box-shadow:var(--shadow-1); text-decoration:none; }
+
+.badge{
+  position:absolute; top:-6px; right:-8px;
+  background:var(--danger); color:#fff; border-radius:999px;
+  padding:2px 8px; font-size:12px; line-height:18px; box-shadow:var(--shadow-1);
+}
+
+/* =========================
+   GRID / CARDS
+   ========================= */
+.grid{
+  display:grid; gap:var(--gap);
+  grid-template-columns: repeat( auto-fill, minmax(220px, 1fr) );
+}
+.card{
+  background:var(--card); border:1px solid var(--line);
+  border-radius:var(--radius); padding:12px; display:flex; flex-direction:column; gap:10px;
+  box-shadow:var(--shadow-1); transition: transform .15s ease, box-shadow .15s ease;
+}
+.card:hover{ transform: translateY(-2px); box-shadow:var(--shadow-2); }
+.card img{ width:100%; aspect-ratio: 4/3; object-fit:cover; border-radius:10px; }
+.card .title{ font-weight:700; }
+.card .meta{ color:var(--subtext); font-size:13px; }
+
+/* =========================
+   BUTTONS
+   ========================= */
+.btn, button, input[type=submit]{
+  appearance:none; border:1px solid var(--brand); background:var(--brand); color:var(--brand-ink);
+  padding:10px 14px; border-radius:12px; font-weight:700; cursor:pointer; display:inline-flex; align-items:center; gap:8px;
+  transition: transform .05s ease, box-shadow .15s ease, background .2s, color .2s, border-color .2s;
+  box-shadow:var(--shadow-1);
+}
+.btn:hover, button:hover, input[type=submit]:hover{ transform: translateY(-1px); box-shadow:var(--shadow-2); }
+.btn:active, button:active{ transform: translateY(0); }
+
+.btn.secondary{
+  background:transparent; color:var(--text); border-color:var(--line);
+}
+.btn.ghost{
+  background:transparent; color:var(--accent); border-color:transparent;
+}
+.btn.danger{ background:var(--danger); border-color:var(--danger); }
+.btn.success{ background:var(--success); border-color:var(--success); }
+
+/* =========================
+   FORMS
+   ========================= */
+.row{ display:flex; flex-wrap:wrap; gap:var(--gap); }
+label{ font-size:13px; color:var(--subtext); display:block; margin:2px 0 6px; }
+
+input[type=text], input[type=number], input[type=password], input[type=email], textarea, select{
+  width:100%; padding:12px 12px; border:1px solid var(--line); outline:0;
+  background:var(--card); color:var(--text); border-radius:12px;
+  transition: border-color .2s ease, box-shadow .2s ease;
+}
+textarea{ resize:vertical; }
+
+input:focus, textarea:focus, select:focus{
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px color-mix(in srgb, var(--accent) 15%, transparent);
+}
+
+/* สไตล์ input file สวย ๆ */
+input[type=file]{
+  background:var(--card); border:1px dashed var(--line); padding:14px; border-radius:12px; color:var(--subtext);
+}
+input[type=file]::file-selector-button{
+  border:0; background:var(--brand); color:var(--brand-ink); padding:8px 12px; border-radius:10px; margin-right:10px; cursor:pointer;
+}
+
+/* ฟอร์มค้นหาบนหน้า index */
+.filters{
+  background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+  padding:12px; box-shadow:var(--shadow-1); margin-bottom:14px;
+}
+
+/* หมวดหมู่เป็นชิป */
+.chips{ display:flex; flex-wrap:wrap; gap:8px; }
+.chip{
+  background:var(--card); color:var(--text); padding:8px 12px; border:1px solid var(--line);
+  border-radius:999px; font-size:13px; cursor:pointer; transition: all .2s;
+}
+.chip.active, .chip:hover{
+  border-color:var(--accent); color:var(--accent); box-shadow:var(--shadow-1);
+}
+
+/* =========================
+   TABLES
+   ========================= */
+.table{
+  width:100%; border-collapse:separate; border-spacing:0; background:var(--card);
+  border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow-1);
+}
+.table th, .table td{ padding:12px 14px; text-align:left; border-bottom:1px solid var(--line); }
+.table thead th{ background: color-mix(in srgb, var(--card) 85%, var(--line) 15%); font-size:13px; color:var(--subtext); text-transform:uppercase; letter-spacing:.04em; }
+.table tbody tr:hover{ background: color-mix(in srgb, var(--card) 92%, var(--line) 8%); }
+
+/* =========================
+   PRICES / BADGES
+   ========================= */
+.price{ font-weight:800; font-size:18px; }
+.kicker{ font-size:12px; color:var(--subtext); }
+
+/* =========================
+   FOOTER
+   ========================= */
+.footer{
+  margin-top:40px; padding:28px 0; color:var(--subtext);
+  border-top:1px solid var(--line); background: color-mix(in srgb, var(--bg) 85%, var(--card) 15%);
+}
+
+/* =========================
+   UTILITIES (ใช้เสริมหน้าเดิมได้)
+   ========================= */
+.stack-sm{ display:flex; flex-direction:column; gap:8px; }
+.stack-md{ display:flex; flex-direction:column; gap:12px; }
+.stack-lg{ display:flex; flex-direction:column; gap:18px; }
+
+.center{ display:grid; place-items:center; }
+
+.card-pad{ padding:16px; }
+.pad-0{ padding:0!important; }
+.mt-0{ margin-top:0!important; }
+.mt-1{ margin-top:8px!important; }
+.mt-2{ margin-top:16px!important; }
+.mt-3{ margin-top:24px!important; }
+
+hr{ border:0; height:1px; background:var(--line); margin:16px 0; }
+
+/* =========================
+   LOGIN PAGE (admin/login.php)
+   ========================= */
+.fullscreen{
+  min-height:calc(100vh - 120px);
+  display:grid; place-items:center;
+}
+.login-card{
+  width:min(420px, 92vw);
+  background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+  padding:22px; box-shadow:var(--shadow-2);
+}
+.login-title{ margin:0 0 4px; }
+.login-sub{ margin:0 0 16px; color:var(--subtext); font-size:13px; }

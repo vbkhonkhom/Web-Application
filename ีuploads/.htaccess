@@ -1,0 +1,7 @@
+# ปิดการรัน PHP ในโฟลเดอร์นี้ (เพื่อกันคนอัปโหลดไฟล์อันตราย)
+php_flag engine off
+RemoveHandler .php .phtml .php3 .php4 .php5 .php7 .phps
+
+<FilesMatch "\.(php|phtml|php3|php4|php5|php7|phps)$">
+  Deny from all
+</FilesMatch>

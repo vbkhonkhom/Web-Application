@@ -16,7 +16,7 @@
 
   --radius:       20px;      /* มุมโค้ง */
   --shadow-1:     0 6px 16px rgba(0,0,0,.06);
-  --shadow-2:     0 10px 30px  rgba(0,0,0,.5);
+  --shadow-2:     0 10px 30px rgba(0,0,0,.5);
   --gap:          16px;
   --font:         ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Thai", "Noto Sans", "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
 }
@@ -33,7 +33,7 @@
     --text:       #e5e7eb;
     --subtext:    #94a3b8;
     --shadow-1:   0 8px 24px rgba(0,0,0,.4);
-    --shadow-2:   0 16px 40px  rgba(0, 0, 0, 0.425);
+    --shadow-2:   0 16px 40px rgba(0,0,0,.425);
   }
 }
 
@@ -52,9 +52,7 @@ img{ max-width:100%; display:block; }
 a{ color:var(--accent); text-decoration:none; }
 a:hover{ text-decoration:underline; }
 
-.container{
-  max-width:1100px; margin:0 auto; padding:20px;
-}
+.container{ max-width:1100px; margin:0 auto; padding:20px; }
 
 /* =========================
    HEADER / NAV
@@ -68,7 +66,7 @@ a:hover{ text-decoration:underline; }
 
 .nav a{
   margin-left:14px; padding:8px 10px; border-radius:10px; color:var(--text);
-  position:relative; transition: background .2s ease, color .2s ease;
+  position:relative; transition: background .2s ease, color .2s ease, box-shadow .2s;
 }
 .nav a:hover{ background:var(--card); box-shadow:var(--shadow-1); text-decoration:none; }
 
@@ -106,13 +104,10 @@ a:hover{ text-decoration:underline; }
 }
 .btn:hover, button:hover, input[type=submit]:hover{ transform: translateY(-1px); box-shadow:var(--shadow-2); }
 .btn:active, button:active{ transform: translateY(0); }
+.btn:focus, button:focus, input[type=submit]:focus{ outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent); }
 
-.btn.secondary{
-  background:transparent; color:var(--text); border-color:var(--line);
-}
-.btn.ghost{
-  background:transparent; color:var(--accent); border-color:transparent;
-}
+.btn.secondary{ background:transparent; color:var(--text); border-color:var(--line); }
+.btn.ghost{ background:transparent; color:var(--accent); border-color:transparent; }
 .btn.danger{ background:var(--danger); border-color:var(--danger); }
 .btn.success{ background:var(--success); border-color:var(--success); }
 
@@ -154,20 +149,30 @@ input[type=file]::file-selector-button{
   background:var(--card); color:var(--text); padding:8px 12px; border:1px solid var(--line);
   border-radius:999px; font-size:13px; cursor:pointer; transition: all .2s;
 }
-.chip.active, .chip:hover{
-  border-color:var(--accent); color:var(--accent); box-shadow:var(--shadow-1);
-}
+.chip.active, .chip:hover{ border-color:var(--accent); color:var(--accent); box-shadow:var(--shadow-1); }
 
 /* =========================
    TABLES
    ========================= */
+/* ใช้ collapse เพื่อให้เส้นต่อเนื่อง + มุมโค้งเนียนร่วมกับ overflow:hidden */
 .table{
-  width:100%; border-collapse:separate; border-spacing:0; background:var(--card);
-  border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow-1);
+  width:100%;
+  border-collapse: collapse;   /* แก้เส้นเพี้ยน */
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  overflow:hidden;             /* ให้มุมโค้งทำงานกับ collapse */
+  box-shadow:var(--shadow-1);
 }
-.table th, .table td{ padding:12px 14px; text-align:left; border-bottom:1px solid var(--line); }
-.table thead th{ background: color-mix(in srgb, var(--card) 85%, var(--line) 15%); font-size:13px; color:var(--subtext); text-transform:uppercase; letter-spacing:.04em; }
+.table th, .table td{
+  padding:12px 14px; text-align:left; border-bottom:1px solid var(--line);
+}
+.table thead th{
+  background: color-mix(in srgb, var(--card) 85%, var(--line) 15%);
+  font-size:13px; color:var(--subtext); text-transform:uppercase; letter-spacing:.04em;
+}
 .table tbody tr:hover{ background: color-mix(in srgb, var(--card) 92%, var(--line) 8%); }
+.table tbody tr:last-child td{ border-bottom:none; } /* ตัดเส้นแถวสุดท้าย */
 
 /* =========================
    PRICES / BADGES
@@ -180,7 +185,8 @@ input[type=file]::file-selector-button{
    ========================= */
 .footer{
   margin-top:40px; padding:28px 0; color:var(--subtext);
-  border-top:1px solid var(--line); background: color-mix(in srgb, var(--bg) 85%, var(--card) 15%);
+  border-top:1px solid var(--line);
+  background: color-mix(in srgb, var(--bg) 85%, var(--card) 15%);
 }
 
 /* =========================
@@ -215,3 +221,8 @@ hr{ border:0; height:1px; background:var(--line); margin:16px 0; }
 }
 .login-title{ margin:0 0 4px; }
 .login-sub{ margin:0 0 16px; color:var(--subtext); font-size:13px; }
+
+/* =========================
+   CART (ภาพย่อให้สวยเสมอ)
+   ========================= */
+.cart-thumb{ height:36px; width:36px; object-fit:cover; border-radius:6px; display:block; }

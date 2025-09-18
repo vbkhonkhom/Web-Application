@@ -11,7 +11,7 @@
 <header class="container header">
   <a href="/ecommerce/index.php" class="brand">
     <img src="/ecommerce/assets/logo.png" alt="logo" height="28">
-    <span>My Shop</span>
+    <span>Shop</span>
   </a>
   <nav class="nav">
     <a href="/ecommerce/index.php">🛍️ สินค้า</a>

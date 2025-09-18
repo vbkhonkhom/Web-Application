@@ -1,6 +1,6 @@
 <?php require '../config.php'; require 'guard.php'; include '../header.php';
 
-echo "<p>สวัสดี, <b>".htmlspecialchars($_SESSION['admin_username'])."</b> | <a href='/ecommerce/admin/logout.php'>ออกจากระบบ</a></p>";
+echo "<p>Hello <b>".htmlspecialchars($_SESSION['admin_username'])."</b> | <a href='/ecommerce/admin/logout.php'>ออกจากระบบ</a></p>";
 
 $products = $pdo->query("
   SELECT p.*, c.name AS category_name
@@ -9,7 +9,7 @@ $products = $pdo->query("
   ORDER BY p.id DESC
 ")->fetchAll();
 ?>
-<h1>แอดมิน: รายการสินค้า</h1>
+<h1>รายการสินค้าทั้งหมด</h1>
 <p>
   <a class="btn" href="add_product.php">+ เพิ่มสินค้า</a>
   <a class="btn secondary" href="categories.php">จัดการหมวดหมู่</a>

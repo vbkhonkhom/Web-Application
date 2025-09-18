@@ -24,7 +24,7 @@
         if ($count > 0) echo "<span class='badge'>$count</span>";
       ?>
     </a>
-    <a href="/ecommerce/admin/">แอดมิน</a>
+    <a href="/ecommerce/admin/">👤 แอดมิน</a>
   </nav>
 </header>
 <main class="container">

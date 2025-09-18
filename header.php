@@ -10,7 +10,7 @@
 <body>
 <header class="container header">
   <a href="/ecommerce/index.php" class="brand">
-    <img src="/ecommerce/assets/logo.svg" alt="logo" height="28">
+    <img src="/ecommerce/assets/logo.png" alt="logo" height="28">
     <span>My Shop</span>
   </a>
   <nav class="nav">

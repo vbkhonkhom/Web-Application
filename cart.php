@@ -38,7 +38,6 @@ include 'header.php';
   </table>
   <p style="text-align:right;font-weight:700;">ยอดรวม: ฿<?=money(cart_total())?></p>
   <div style="display:flex; gap:10px; justify-content:flex-end;">
-    <button type="submit" name="update" class="btn secondary">อัปเดตจำนวน</button>
     <a class="btn" href="checkout.php">ไปชำระเงิน</a>
   </div>
 </form>

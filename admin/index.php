@@ -1,6 +1,6 @@
 <?php require '../config.php'; require 'guard.php'; include '../header.php';
 
-echo "<p>Hello <b>".htmlspecialchars($_SESSION['admin_username'])."</b> | <a href='/ecommerce/admin/logout.php'>ออกจากระบบ</a></p>";
+echo "<p>สวัสดี, <b>".htmlspecialchars($_SESSION['admin_username'])."</b> | <a href='/ecommerce/admin/logout.php'>ออกจากระบบ</a></p>";
 
 $products = $pdo->query("
   SELECT p.*, c.name AS category_name
@@ -16,7 +16,7 @@ $products = $pdo->query("
 </p>
 <table class="table">
   <thead>
-    <tr><th>ID</th><th>ชื่อ</th><th>หมวดหมู่</th><th>ราคา</th><th>ภาพ</th></tr>
+    <tr><th>ID</th><th>ชื่อ</th><th>หมวดหมู่</th><th>ราคา</th><th>ภาพ</th><th style="width:180px;">การจัดการ</th></tr>
   </thead>
   <tbody>
   <?php foreach ($products as $p): ?>
@@ -25,7 +25,20 @@ $products = $pdo->query("
       <td><?=htmlspecialchars($p['name'])?></td>
       <td><?=htmlspecialchars($p['category_name'] ?? '-')?></td>
       <td>฿<?=number_format($p['price'],2)?></td>
-      <td><img src="<?=htmlspecialchars($p['image_url'])?>" style="height:40px"></td>
+      <td>
+        <?php if ($p['image_url']): ?>
+          <img src="/ecommerce/<?=htmlspecialchars($p['image_url'])?>" style="height:40px">
+        <?php endif; ?>
+      </td>
+      <td>
+        <a class="btn secondary" href="edit_product.php?id=<?=$p['id']?>">แก้ไข</a>
+        <form action="delete_product.php" method="post" style="display:inline"
+              onsubmit="return confirm('ลบสินค้านี้ถาวรหรือไม่?')">
+          <?php csrf_field(); ?>
+          <input type="hidden" name="id" value="<?=$p['id']?>">
+          <button class="btn danger" type="submit">ลบ</button>
+        </form>
+      </td>
     </tr>
   <?php endforeach; ?>
   </tbody>

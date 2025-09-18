@@ -19,7 +19,7 @@ $cats = $pdo->query("SELECT * FROM categories ORDER BY name")->fetchAll();
 <form method="post" style="max-width:360px; margin-bottom:16px;">
   <label>ชื่อหมวดหมู่</label>
   <input type="text" name="name" required>
-  <br>
+  <br><br>
   <button class="btn" type="submit">เพิ่ม</button>
 </form>
 
